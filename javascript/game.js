@@ -1,81 +1,122 @@
+
+
 //Global Variables
-var answerLocation = document.getElementById("test");
-var currentWord = " ";
-var userGuess = "";
-var isInWord = false;
+var gameObject = [
+    "sundering",
+    "eriador",
+    "rohan",
+    "mordor",
+]
+var currentWord = ""; //Current word the computer picks
+var userGuess = ""; //Letters that the person guesses
+var isInWord = []; //Array for letters in word
+var blanketSpace = []; //Array for the blank spaces
+var blanks = 0;
+var wins = 0;
+var loses = 0;
+var lives = 10;
+var wrongLetter = [];
 
-var gameObject = {
-    sunderingWord: "sundering",
-    eriadorWord: "eriador",
-    rohanWord: "rohan",
-    mordorWord: "mordor",
-}
 
 
-//every time you click the rohan box this will fire.
-function nameFunction() {
-    answerLocation.innerHTML = "";
-    document.getElementById("wrongAnswers").innerHTML = "";
-    currentWord = gameObject.sunderingWord;
-    for (x = 0; x < gameObject.sunderingWord.length; x++) {
-    answerLocation.innerHTML += "<span><strong>&nbsp;_&nbsp;</strong></span>";
-}
-}
-function nameFunction2(){
-    answerLocation.innerHTML = "";
-    document.getElementById("wrongAnswers").innerHTML = "";
-    currentWord = gameObject.eriadorWord;
-    for (x = 0; x < gameObject.eriadorWord.length; x++) {
-        answerLocation.innerHTML += "<span><strong>&nbsp;_&nbsp;</strong></span>";
+//Functions go here 
+
+// Game start function 
+
+function gameStart() {
+    document.getElementById("lives").innerHTML = lives;
+    currentWord = gameObject[Math.floor(Math.random() * gameObject.length)];
+    isInWord = currentWord.split("");
+    blanks = isInWord.length;
+
+    // Reset 
+    lives = 10;
+    wrongLetter = [];
+    blanketSpace = [];
+
+    for (var i = 0; i < blanks; i++) {
+        
+        blanketSpace.push("_");
     }
-}
-function nameFunction3(){
-    answerLocation.innerHTML = "";
-    document.getElementById("wrongAnswers").innerHTML = "";
-    currentWord = gameObject.rohanWord;
-    for (x = 0; x < gameObject.rohanWord.length; x++) {
-        answerLocation.innerHTML += "<span><strong>&nbsp;_&nbsp;</strong></span>";
-    }
-}
-function nameFunction4() {
-    answerLocation.innerHTML = "";
-    document.getElementById("wrongAnswers").innerHTML = "";
-    currentWord = gameObject.mordorWord;
-    for (x = 0; x < gameObject.mordorWord.length; x++) {
-        answerLocation.innerHTML += "<span><strong>&nbsp;_&nbsp;</strong></span>";
-    }
-}
 
-
-
-document.onkeyup = function () {
-    userGuess = event.key;
+    document.getElementById("currentWord").innerHTML = blanketSpace.join(" ");
+    document.getElementById("lives").innerHTML = lives;
+    document.getElementById("wins").innerHTML = wins;
+    document.getElementById("loses").innerHTML = loses;
+    //Testing and Debugging
+    console.log(isInWord);
     console.log(currentWord);
-    for (i = 0; i < currentWord.length; i++) {
-        if (userGuess == currentWord[i]) {
-            isInWord = true;
-            console.log("You got this!")
-        } else if (userGuess != currentWord[i]) {
-            isInWord == false;
-            console.log("Sorry you missed")
+    console.log(blanks);
+    console.log(blanketSpace);
+    console.log(wins);
+
+
+}
+function checkLetter(letter) {
+    var letterInWord = false;
+
+    for (var i = 0; i < blanks; i++) {
+        if (currentWord[i] == letter) {
+            letterInWord = true;
+            console.log("hey");
         }
     }
 
-    if (isInWord === true) {
-        console.log("It's in the word!");
-        isInWord = false;
-    } else if (isInWord === false){
-        console.log("fired");
-        document.getElementById("wrongAnswers").innerHTML += userGuess;
-    }
+    if (letterInWord) {
 
+        for (var i = 0; i < blanks; i++) {
+            if (currentWord[i] == letter) {
+                blanketSpace[i] = letter;
+            }
+        }
+    }
+    // Letter wasn't found
+    else {
+        wrongLetter.push(letter);
+        lives--
+    }
+    console.log(blanketSpace);
+}
+
+function roundComplete() {
+    console.log("Win count: " + wins + " | Loss Count: " + loses + " | Guesses Left " + lives);
+
+    document.getElementById("lives").innerHTML = lives;
+    document.getElementById("currentWord").innerHTML = blanketSpace.join(" ");
+    document.getElementById("wrongGuesses").innerHTML = wrongLetter.join(" ");
+
+    if (isInWord.toString() == blanketSpace.toString()) {
+        wins++;
+        alert("You Won!");
+
+        document.getElementById("wins").innerHTML = wins;
+        gameStart();
+    }
+    else if (lives == 0) {
+        loses++;
+        alert("You lost!");
+
+        document.getElementById("loses").innerHTML = loses;
+        gameStart();
+    }
 }
 
 
+// main process here 
+
+gameStart();
 
 
 
 
+//Register Keyclicks
 
+document.onkeyup = function (event) {
+    var letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
+    checkLetter(letterGuessed);
+   roundComplete();
 
-
+    //Testing/Debugging
+    console.log(letterGuessed);
+}
+ 

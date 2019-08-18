@@ -1,56 +1,18 @@
 
 
-h1 {
+body {
     font-family: 'Amiri', serif;
 }
 
-.jumbotron img {
-    width: 100%;
-}
-
-
-#box-sea {
-    width: 150px;
-    height: 150px;
-    border: 3px dashed #000;
-    position: absolute;
-    top: 710px;
-    left: 190px;
-    border-radius: 50%;
-}
-#box-eriador {
-    width: 200px;
-    height: 250px;
-    border: 3px dashed #000;
-    position: absolute;
-    top: 500px;
-    left: 300px;
-    border-radius: 50%;
-}
-#box-rohan {
-    width: 150px;
-    height: 150px;
-    border: 3px dashed #000;
-    position: absolute;
-    top: 700px;
-    left: 580px;
-    border-radius: 50%;
-}
-
-#box-mordor {
-    width: 150px;
-    height: 150px;
-    border: 3px dashed #000;
-    position: absolute;
-    top: 800px;
-    left: 900px;
-    border-radius: 50%;
-}
-
-.box:hover {
-    cursor: help;
-}
  #quote {
      font-size: 40px;
  }
-
+ .card {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: lightgrey;
+}
+#backdrop {
+    background-image: url(../css/images/img-1536128208-2095-29249-p-A25F3E94-DBBC-66E3-8A49D0F6CEE09647-2544003__FocalPointCropWzQyNyw2NDAsNTAsNTAsODUsImpwZyIsNjUsMi41XQ.jpg);
+}

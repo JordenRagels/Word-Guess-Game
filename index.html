@@ -9,27 +9,33 @@
     <meta name="viewport " content="width=device-width" , initial-scale=1">
 </head>
 
-<body>
-    <div class="container.fluid">
-        <div class="jumbotron mx-auto">
-            <h1 class="display-4" id="quote">It's a dangerous business, Frodo, going out of your door," he used to say. "You step
-                into the Road, and if you don't keep your feet, there is no knowing where you might be swept off to.
-            </h1>
-            <div class="img-frame">
-            <img src="images/Map2.jpg" alt="Map Picture">
-            <div class= "box" id="box-sea"onclick="nameFunction()"></div>
-            <div class= "box" id="box-eriador"onclick="nameFunction2()"></div>
-            <div class= "box" id="box-rohan" onclick="nameFunction3()"></div>
-            <div class= "box" id="box-mordor"onclick="nameFunction4()"></div>
+
+
+<body id="backdrop">
+    <div class="container-fluid">
+        <div class="card" style="width: 40%">
+            <img src="assets/css/images/Map2.jpg" class="card-img-top" alt="Map Picture">
+            <div class="card-body">
+                <h5 class="card-title" id="game_title ">Lord of the Rings</h5>
+                <p class="card-text">It's a dangerous business, Frodo, going out of your door," he used to say. "You
+                    step
+                    into the Road, and if you don't keep your feet, there is no knowing where you might be swept off to.
+                </p>
+                <h6> Current Word </h6>
+                <div id="currentWord"> Current Word </div>
+                <h6> Wrong Letters </h6>
+                <p id="wrongGuesses">Wrong Letters</p>
+                <h6> Lives </h6>
+                <p id="lives">Number of Lives</p>
+                <h6> Wins </h6>
+                <p id="wins">Number of Wins</p>
+                <h6> Loses </h6>
+                <p id="loses">Number of Loses</p>
+
+                <span id="test"></span>
             </div>
-            <p id="wrongAnswers"></p>
         </div>
-        <span id="test"></span>
     </div>
-
-
-
-
 
     <script src="javascript/game.js" rel="javascript"></script>
 </body>
