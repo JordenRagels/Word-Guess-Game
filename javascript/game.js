@@ -58,7 +58,6 @@ function checkLetter(letter) {
     for (var i = 0; i < blanks; i++) {
         if (currentWord[i] == letter) {
             letterInWord = true;
-            console.log("hey");
         }
     }
 
